@@ -36,23 +36,24 @@ export default function App() {
   const progress = xp % 100
 
   const toggleQuest = (id: number) => {
+    const selectedQuest = quests.find((quest) => quest.id === id)
+    if (!selectedQuest) return
+
     setQuests((current) =>
-      current.map((quest) => {
-        if (quest.id !== id) return quest
-        if (!quest.completed) setXp((value) => value + quest.xp)
-        if (quest.completed) setXp((value) => Math.max(0, value - quest.xp))
-        return { ...quest, completed: !quest.completed }
-      }),
+      current.map((quest) =>
+        quest.id === id ? { ...quest, completed: !quest.completed } : quest,
+      ),
+    )
+    setXp((current) =>
+      Math.max(0, current + (selectedQuest.completed ? -selectedQuest.xp : selectedQuest.xp)),
     )
   }
 
   const resetDay = () => {
-    setXp((value) => {
-      const completedXp = quests
-        .filter((quest) => quest.completed)
-        .reduce((total, quest) => total - quest.xp, 0)
-      return Math.max(0, value + completedXp)
-    })
+    const completedXp = quests
+      .filter((quest) => quest.completed)
+      .reduce((total, quest) => total + quest.xp, 0)
+    setXp((current) => Math.max(0, current - completedXp))
     setQuests(initialQuests)
   }
 
@@ -88,6 +89,7 @@ export default function App() {
               className={`quest ${quest.completed ? 'completed' : ''}`}
               key={quest.id}
               onClick={() => toggleQuest(quest.id)}
+              aria-pressed={quest.completed}
             >
               <span className="checkbox" aria-hidden="true">
                 {quest.completed ? '✓' : ''}
