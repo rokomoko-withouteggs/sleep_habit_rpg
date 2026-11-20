@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+  color: #f5f2ea;
+  background: #101523;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; background: radial-gradient(circle at 50% -10%, #27324a 0, #101523 52%); }
+button { font: inherit; }
+
+.app { width: min(100% - 32px, 640px); margin: 0 auto; padding: 52px 0 64px; }
+header, .status-row, .section-title { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.eyebrow { margin: 0 0 10px; color: #8c9ab4; font-size: 11px; font-weight: 700; letter-spacing: .18em; }
+h1, h2 { margin: 0; }
+h1 { font-size: clamp(26px, 6vw, 36px); letter-spacing: -.04em; }
+h2 { font-size: 20px; }
+.level { padding: 10px 14px; border: 1px solid #53627d; border-radius: 999px; color: #f4c95d; font-weight: 700; white-space: nowrap; }
+.status-card { margin: 36px 0 42px; padding: 24px; border: 1px solid #2c3850; border-radius: 18px; background: #182135; box-shadow: 0 20px 50px #080b14aa; }
+.status-row { color: #aab4c8; font-size: 14px; }
+.status-row strong { color: #f4c95d; font-size: 14px; }
+.progress-track { height: 10px; margin-top: 16px; overflow: hidden; border-radius: 99px; background: #2b3750; }
+.progress-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #f4c95d, #f09d54); transition: width .25s ease; }
+.section-title { margin-bottom: 16px; }
+.reset-button { border: 0; color: #8c9ab4; background: transparent; cursor: pointer; font-size: 13px; }
+.reset-button:hover { color: #f5f2ea; }
+.quest-list { display: grid; gap: 12px; }
+.quest { display: flex; align-items: center; width: 100%; gap: 14px; padding: 18px; border: 1px solid #2c3850; border-radius: 14px; color: #f5f2ea; background: #182135; text-align: left; cursor: pointer; transition: transform .18s ease, border-color .18s ease, background .18s ease; }
+.quest:hover { transform: translateY(-2px); border-color: #53627d; }
+.quest.completed { border-color: #507b67; background: #182b29; }
+.checkbox { display: grid; flex: 0 0 24px; place-items: center; width: 24px; height: 24px; border: 1px solid #66758f; border-radius: 7px; color: #101523; font-weight: 700; }
+.completed .checkbox { border-color: #75c69a; background: #75c69a; }
+.quest-title { flex: 1; font-size: 15px; line-height: 1.5; }
+.completed .quest-title { color: #9eb4aa; text-decoration: line-through; }
+.xp { color: #f4c95d; font-size: 13px; font-weight: 700; white-space: nowrap; }
+
+@media (max-width: 480px) { .app { padding-top: 32px; } .status-card { margin: 28px 0 34px; padding: 20px; } .quest { padding: 15px; } .quest-title { font-size: 14px; } }
